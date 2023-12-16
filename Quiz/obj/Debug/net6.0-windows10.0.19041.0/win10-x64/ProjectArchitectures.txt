@@ -1,0 +1,1 @@
+C:\Users\hered\Downloads\Curso C#\Quiz\Quiz\Quiz.csproj;x64

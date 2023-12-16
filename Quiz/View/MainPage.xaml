@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="Quiz.MainPage"
+                 Title="GeoQuiz">
+        <Grid
+         RowDefinitions="Auto,Auto,Auto"
+         ColumnDefinitions="*"
+         Padding="0">
+       
+            <Frame
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="8"
+            CornerRadius="10"
+            BorderColor="LightGray"
+            HeightRequest="250">
+                <StackLayout>
+                    <Grid>
+                        <BoxView Color="BlueViolet" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="550" HeightRequest="100" />
+                        <Label Text="{Binding PreguntaActual}" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+                    </Grid>
+                
+                    <HorizontalStackLayout 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="50"
+                        HorizontalOptions="Center"
+                        Spacing="130">
+
+                        <Button Text="Cierto" 
+                                WidthRequest="100"            
+                                Command="{Binding CiertoCommand}"/>
+                        <Button Text="Falso" 
+                                WidthRequest="100"
+                                Command="{Binding FalsoCommand}"/>
+                    </HorizontalStackLayout>
+                </StackLayout>
+            </Frame>
+
+
+            <!-- Sección del medio con botones y mensajes -->
+            <HorizontalStackLayout Grid.Row="1" 
+                                   Grid.Column="0"
+                                   Margin="50"
+                                   HorizontalOptions="Center"
+                                   Spacing="250">
+                <Button 
+                    Text="Anterior" 
+                    WidthRequest="100"
+                    TextColor="BlueViolet"
+                    BackgroundColor="LightGray"
+                    Command="{Binding AnteriorCommand}"/>
+
+                <!-- StackLayout para los mensajes "Correcto" o "Incorrecto" -->
+                <StackLayout VerticalOptions="Center">
+                <Label x:Name="MensajeCorrecto" IsVisible="{Binding MensajeCorrectoVisible}" Text="¡Correcto!" TextColor="Green" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label x:Name="MensajeIncorrecto" IsVisible="{Binding MensajeIncorrectoVisible}" Text="¡Incorrecto!"   TextColor="Red" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+                </StackLayout>
+            
+            
+                <Button Text="Siguiente" 
+                    WidthRequest="100"
+                    TextColor="BlueViolet"
+                    BackgroundColor="LightGray"
+                    Command="{Binding SiguienteCommand}"/>
+            </HorizontalStackLayout>
+
+            <!-- Control para ocultar mensajes -->
+        <BoxView x:Name="OcultarMensajesControl" IsVisible="{Binding OcultarMensajesControlVisible}" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0" Opacity="0.01" />
+
+
+
+        <!-- Sección inferior con el recuento de preguntas contestadas y correctas -->
+            <Frame Grid.Row="2" Grid.Column="0"
+               CornerRadius="10"
+               BorderColor="LightGray"
+               Margin="8"
+                 WidthRequest="600">
+                <HorizontalStackLayout Spacing="200">
+                    <Label  Text="{Binding NumeroPreguntasContestadasText}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label  Text="{Binding NumeroPreguntasCorrectasText}" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                </HorizontalStackLayout>
+            </Frame>
+
+        </Grid>
+
+    </ContentPage>
